@@ -4,7 +4,7 @@
 typedef enum {
     BRAK_SPECJALIZACJI=0,
     MEDYK,
-    INŻYNIER,
+    INZYNIER,
     ZWIADOWCA,
     TECHNIK,
     BIOLOG,
@@ -25,7 +25,7 @@ typedef enum {
 } Status;
 
 typedef struct Ocalaly {
-    char imie[50];
+    char imie[100];
     Specjalizacja rola;
     int ilosc_racji;
     int stan_zdrowia;
