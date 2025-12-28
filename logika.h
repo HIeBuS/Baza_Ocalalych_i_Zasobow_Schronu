@@ -3,4 +3,8 @@
 
 #include "dane.h"
 
+void wyszukaj_po_imieniu(Ocalaly* head, char* fragment);
+void wyszukaj_po_specjalizacji(Ocalaly* head, Specjalizacja rola);
+void wyszukaj_po_statusie(Ocalaly* head, Status stan);
+
 #endif

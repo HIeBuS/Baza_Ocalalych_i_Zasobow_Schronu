@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "dane.h"
 #include "lista.h"
 #include "interface.h"
@@ -46,16 +47,41 @@ int main() {
             case 5: {
                 int wybor = 0;
                 printf("\n--- WYSZUKIWANIE ---\n");
-                printf("1. Szukaj po fragmencie nazwiska\n");
-                printf("2. Szukaj po roli (np. Medyk)\n");
-                printf("3. Szukaj po statusie (np. Ranny)\n");
+                printf("1. Szukaj po imieniu\n");
+                printf("2. Szukaj po specjalizacji\n");
+                printf("3. Szukaj po statusie\n");
                 printf("Twoj wybor: ");
-                scanf("%d", &wybor);
                 
-                if (wybor >= 1 && wybor <= 3) {
-                    printf("Wybrano opcje szukania nr %d)\n", wybor);
-                } else {
-                    printf("Niepoprawny wybor!\n");
+                if (scanf("%d", &wybor) != 1) {
+                    printf("Blad! To nie liczba!\n");
+                    while(getchar() != '\n');
+                    break;
+                }
+                
+                if (wybor == 1) {
+                    char bufor[100];
+                    printf("Podaj fragment imienia: ");
+                    
+                    while(getchar() != '\n'); 
+                    fgets(bufor, sizeof(bufor), stdin);
+                    bufor[strcspn(bufor, "\n")] = 0; 
+
+                    wyszukaj_po_imieniu(lista, bufor);
+                } 
+                else if (wybor == 2) {
+                    int rola_id;
+                    printf("Podaj numer specjalizacji (0-Brak, 1-Medyk, 2-Inzynier, 3-Zwiadowca, 4-Technik, 5-Biolog, 6-Mechanik, 7-Strateg, 8-Wojownik, 9-Szpieg, 10-Naukowiec): ");
+                    scanf("%d", &rola_id);
+                    wyszukaj_po_specjalizacji(lista, (Specjalizacja)rola_id);
+                } 
+                else if (wybor == 3) {
+                    int stan_id;
+                    printf("Podaj numer statusu (0-Aktywny, 1-Chory, 2-Ranny, 3-Poza schronem, 4-Zaginiony, 5-Martwy): ");
+                    scanf("%d", &stan_id);
+                    wyszukaj_po_statusie(lista, (Status)stan_id);
+                }
+                else {
+                    printf("Bledny wybor!\n");
                 }
                 break;
             }
@@ -90,7 +116,7 @@ int main() {
                 break;
 
             default:
-                printf("\nNieznana opcja menu: %d, wybierz liczbe od 0 do 8: \n", wybor);
+                printf("\nNieznana opcja menu: %d, wybierz liczbe od 0 do 8 \n", wybor);
         }
     }
 
