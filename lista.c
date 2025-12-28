@@ -20,6 +20,7 @@ Ocalaly* utworz_ocalalego(const char* imie, Specjalizacja rola, int ilosc_racji,
     nowy->stan_zdrowia = stan_zdrowia;
     nowy->poziom_zagrozenia = poziom_zagrozenia;
     nowy->stan = stan; 
+
     nowy->next = NULL;
 
     return nowy; 
@@ -33,4 +34,21 @@ Ocalaly* dodaj_na_poczatek(Ocalaly* head, Ocalaly* nowy) {
     nowy->next = head;
 
     return nowy; 
+}
+
+void wypisz_liste(Ocalaly* head) {
+    if (head == NULL) {
+        printf("Lista ocalałych jest pusta!\n");
+        return;
+    }
+
+    Ocalaly* obecny = head;
+
+    printf("\n--- LISTA OCALAŁYCH ---\n");
+
+    while (obecny != NULL) {
+        printf("Imie: %s | Specjalizacja: %d | Ilosc racji: %d | Stan zdrowia: %d | Poziom zagrozenia: %d | Status: %d\n", obecny->imie, obecny->rola, obecny->ilosc_racji, obecny->stan_zdrowia, obecny->poziom_zagrozenia, obecny->stan);
+        obecny = obecny->next;
+    }
+    printf("-----------------------\n");
 }

@@ -17,7 +17,7 @@ int main() {
     Ocalaly* o2 = utworz_ocalalego("Jan Nowak", INZYNIER, 10, 90, 2, AKTYWNY);
     lista = dodaj_na_poczatek(lista, o2);
 
-    printf("Pierwsza osoba w liscie: %s\n", lista->imie);
+    wypisz_liste(lista);
 
     return 0;
 }
