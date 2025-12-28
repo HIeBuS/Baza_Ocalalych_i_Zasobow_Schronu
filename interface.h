@@ -4,5 +4,6 @@
 #include "dane.h"
 
 void wyswietl_menu();
+Ocalaly* dodaj_ocalalego();
 
 #endif

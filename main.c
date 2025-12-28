@@ -28,9 +28,14 @@ int main() {
         }
 
         switch (wybor) {
-            case 1:
-                printf("\nDodawanie danych\n");
+            case 1: {
+                Ocalaly* nowy = dodaj_ocalalego();
+                if (nowy != NULL) {
+                    lista = dodaj_na_poczatek(lista, nowy);
+                    printf("Nowy ocalaly zostal dodany do systemu!\n");
+                }
                 break;
+            }
 
             case 2:
                 printf("Edycja danych\n");
