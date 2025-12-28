@@ -20,9 +20,17 @@ Ocalaly* utworz_ocalalego(const char* imie, Specjalizacja rola, int ilosc_racji,
     nowy->stan_zdrowia = stan_zdrowia;
     nowy->poziom_zagrozenia = poziom_zagrozenia;
     nowy->stan = stan; 
-
-
     nowy->next = NULL;
+
+    return nowy; 
+}
+
+Ocalaly* dodaj_na_poczatek(Ocalaly* head, Ocalaly* nowy) {
+    if (nowy == NULL) {
+        return head; 
+    }
+
+    nowy->next = head;
 
     return nowy; 
 }

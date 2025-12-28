@@ -4,5 +4,6 @@
 #include "dane.h"
 
 Ocalaly* utworz_ocalalego(const char* imie, Specjalizacja rola, int ilosc_racji, int stan_zdrowia, int poziom_zagrozenia, Status stan);
+Ocalaly* dodaj_na_poczatek(Ocalaly* head, Ocalaly* nowy);
 
 #endif
