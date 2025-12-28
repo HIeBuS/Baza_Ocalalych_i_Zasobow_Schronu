@@ -3,4 +3,6 @@
 
 #include "dane.h"
 
+void wyswietl_menu();
+
 #endif

@@ -36,18 +36,21 @@ Ocalaly* dodaj_na_poczatek(Ocalaly* head, Ocalaly* nowy) {
     return nowy; 
 }
 
+const char* nazwy_specjalizacji[] = { "Brak specjalizacji", "Medyk", "Inzynier", "Zwiadowca", "Technik", "Biolog", "Mechanik", "Strateg", "Wojownik", "Szpieg", "Naukowiec" };
+const char* nazwy_statusu[] = { "Aktywny", "Chory", "Ranny", "Poza schronem", "Zaginiony", "Martwy" };
+
 void wypisz_liste(Ocalaly* head) {
     if (head == NULL) {
-        printf("Lista ocalałych jest pusta!\n");
+        printf("Lista ocalalych jest pusta!\n");
         return;
     }
 
     Ocalaly* obecny = head;
 
-    printf("\n--- LISTA OCALAŁYCH ---\n");
+    printf("\n--- LISTA OCALALYCH ---\n");
 
     while (obecny != NULL) {
-        printf("Imie: %s | Specjalizacja: %d | Ilosc racji: %d | Stan zdrowia: %d | Poziom zagrozenia: %d | Status: %d\n", obecny->imie, obecny->rola, obecny->ilosc_racji, obecny->stan_zdrowia, obecny->poziom_zagrozenia, obecny->stan);
+        printf("Imie: %s | Specjalizacja: %s | Ilosc racji: %d | Stan zdrowia: %d | Poziom zagrozenia: %d | Status: %s\n", obecny->imie, nazwy_specjalizacji[obecny->rola], obecny->ilosc_racji, obecny->stan_zdrowia, obecny->poziom_zagrozenia, nazwy_statusu[obecny->stan]);
         obecny = obecny->next;
     }
     printf("-----------------------\n");
