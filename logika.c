@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "logika.h"
 #include "lista.h"
@@ -65,4 +66,35 @@ Ocalaly* edytuj_ocalalego(Ocalaly* head, char* szukane_imie) {
     }
 
     return NULL;
+}
+
+Ocalaly* usun_ocalalego(Ocalaly* head, char* imie, int* kod_wyniku) {
+    Ocalaly *obecny = head;
+    Ocalaly *poprzedni = NULL;
+
+    while (obecny != NULL) {
+        if (strcmp(obecny->imie, imie) == 0) {
+            
+            if (obecny->stan == POZA_SCHRONEM) {
+                *kod_wyniku = 2;
+                return head;
+            }
+
+            if (poprzedni == NULL) {
+                head = obecny->next;
+            } else {
+                poprzedni->next = obecny->next;
+            }
+
+            free(obecny);
+            *kod_wyniku = 0;
+            return head;
+        }
+
+        poprzedni = obecny;
+        obecny = obecny->next;
+    }
+
+    *kod_wyniku = 1;
+    return head;
 }

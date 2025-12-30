@@ -103,9 +103,32 @@ int main() {
                 break;
             }
 
-            case 3:
-                printf("\nUsuwanie ocalalego\n");
+            case 3: {
+                char bufor[100];
+                int rezultat = 0;
+
+                printf("\n--- USUWANIE OCALALEGO ---\n");
+                printf("Podaj imie (i nazwisko) osoby do usuniecia: ");
+                
+                while(getchar() != '\n');
+                if (fgets(bufor, sizeof(bufor), stdin)) {
+                    bufor[strcspn(bufor, "\n")] = 0;
+                }
+
+                lista = usun_ocalalego(lista, bufor, &rezultat);
+
+                if (rezultat == 0) {
+                    printf("\nOcalaly '%s' zostal usuniety z systemu!\n", bufor);
+                } 
+                else if (rezultat == 1) {
+                    printf("\nNie znaleziono osoby o imieniu: '%s'\n", bufor);
+                } 
+                else if (rezultat == 2) {
+                    printf("\nNie mozna usunac osoby o statusie 'Poza schronem'!\n");
+                    printf("Musisz najpierw zmienic jej status (Edycja), aby ja usunac!\n");
+                }
                 break;
+            }
 
             case 4:
                 wypisz_liste(lista);
