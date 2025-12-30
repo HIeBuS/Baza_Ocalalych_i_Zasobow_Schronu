@@ -37,9 +37,71 @@ int main() {
                 break;
             }
 
-            case 2:
-                printf("Edycja danych\n");
+            case 2: {
+                char bufor[100];
+                printf("\n--- EDYCJA DANYCH ---\n");
+                printf("Podaj imie (i nazwisko) osoby do edycji: ");
+                
+                while(getchar() != '\n');
+                if (fgets(bufor, sizeof(bufor), stdin)) {
+                    bufor[strcspn(bufor, "\n")] = 0;
+                }
+
+                Ocalaly* cel = edytuj_ocalalego(lista, bufor);
+
+                if (cel == NULL) {
+                    printf("Nie znaleziono osoby: %s\n", bufor);
+                } else {
+                    printf("\nZnaleziono (przed zmiana):\n");
+                    wypisz_pojedynczego(cel); 
+
+                    printf("\nCo chcesz zmienic?\n");
+                    printf("1. Specjalizacja\n");
+                    printf("2. Ilosc racji\n");
+                    printf("3. Stan zdrowia\n");
+                    printf("4. Poziom zagrozenia\n");
+                    printf("5. Status\n");
+                    printf("0. Anuluj\n");
+                    printf("Wybor: ");
+
+                    int wybor_pola;
+                    scanf("%d", &wybor_pola);
+
+                    switch (wybor_pola) {
+                        case 1:
+                            printf("Nowa specjalizacja (0-Brak, 1-Medyk, 2-Inzynier, 3-Zwiadowca, 4-Technik, 5-Biolog, 6-Mechanik, 7-Strateg, 8-Wojownik, 9-Szpieg, 10-Naukowiec): ");
+                            scanf("%d", (int*)&cel->rola);
+                            break;
+                        case 2:
+                            printf("Nowa ilosc racji: ");
+                            scanf("%d", &cel->ilosc_racji);
+                            break;
+                        case 3:
+                            printf("Nowy stan zdrowia (0-100): ");
+                            scanf("%d", &cel->stan_zdrowia);
+                            break;
+                        case 4:
+                            printf("Nowy poziom zagrozenia (0-10): ");
+                            scanf("%d", &cel->poziom_zagrozenia);
+                            break;
+                        case 5:
+                            printf("Nowy status (0-Aktywny, 1-Chory, 2-Ranny, 3-Poza schronem, 4-Zaginiony, 5-Martwy): ");
+                            scanf("%d", (int*)&cel->stan);
+                            break;
+                        case 0:
+                            printf("Anulowano!\n");
+                            break;
+                        default:
+                            printf("Bledny wybor!\n");
+                    }
+                    
+                    if (wybor_pola != 0) {
+                        printf("Zmieniono dane! Aktualny stan:\n");
+                        wypisz_pojedynczego(cel);
+                    }
+                }
                 break;
+            }
 
             case 3:
                 printf("\nUsuwanie ocalalego\n");

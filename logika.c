@@ -53,3 +53,16 @@ void wyszukaj_po_statusie(Ocalaly* head, Status stan) {
     if (!znaleziono) printf("Brak osob o tym statusie!\n");
     printf("------------------------------------\n");
 }
+
+Ocalaly* edytuj_ocalalego(Ocalaly* head, char* szukane_imie) {
+    Ocalaly* obecny = head;
+    
+    while (obecny != NULL) {
+        if (strcmp(obecny->imie, szukane_imie) == 0) {
+            return obecny;
+        }
+        obecny = obecny->next;
+    }
+
+    return NULL;
+}
