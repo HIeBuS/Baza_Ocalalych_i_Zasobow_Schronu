@@ -7,10 +7,17 @@
 #include "logika.h"
 #include "pliki.h"
 
-int main() {
+int main(int argc, char *argv[]) {
     Ocalaly* lista = NULL;
 
-    Ocalaly* o1 = utworz_ocalalego("Thomas", ZWIADOWCA, 5, 95, 8, AKTYWNY);
+    if (argc > 1) {
+        printf("Wykryto plik startowy: %s\n", argv[1]);
+        lista = wczytaj_z_pliku(lista, argv[1]);
+    } 
+    else {
+        printf("Wczytuje domyslna baze testowa...\n");
+
+        Ocalaly* o1 = utworz_ocalalego("Thomas", ZWIADOWCA, 5, 95, 8, AKTYWNY);
     lista = dodaj_na_poczatek(lista, o1);
 
     Ocalaly* o2 = utworz_ocalalego("Newt", STRATEG, 4, 80, 3, AKTYWNY);
@@ -24,6 +31,7 @@ int main() {
 
     Ocalaly* o5 = utworz_ocalalego("Teresa Agnes", MEDYK, 3, 90, 6, AKTYWNY);
     lista = dodaj_na_poczatek(lista, o5);
+    }
 
     int wybor = -1;
 
@@ -213,9 +221,17 @@ int main() {
                 break;
             }
 
-            case 8:
-                printf("Odczyt z pliku\n");
+            case 8: {
+                char nazwa_pliku[50];
+                printf("\n--- ODCZYT Z PLIKU ---\n");
+                printf("Podaj nazwe pliku do wczytania: ");
+                
+                while(getchar() != '\n');
+                scanf("%s", nazwa_pliku);
+
+                lista = wczytaj_z_pliku(lista, nazwa_pliku);
                 break;
+            }
 
             case 0:
                 printf("\nZamykanie systemu Schron 17...\n");
