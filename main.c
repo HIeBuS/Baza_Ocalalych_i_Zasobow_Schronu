@@ -10,11 +10,20 @@
 int main() {
     Ocalaly* lista = NULL;
 
-    Ocalaly* o1 = utworz_ocalalego("Jan Kowalski", MEDYK, 5, 100, 0, AKTYWNY);
+    Ocalaly* o1 = utworz_ocalalego("Thomas", ZWIADOWCA, 5, 95, 8, AKTYWNY);
     lista = dodaj_na_poczatek(lista, o1);
 
-    Ocalaly* o2 = utworz_ocalalego("Jan Nowak", INZYNIER, 10, 90, 2, AKTYWNY);
+    Ocalaly* o2 = utworz_ocalalego("Newt", STRATEG, 4, 80, 3, AKTYWNY);
     lista = dodaj_na_poczatek(lista, o2);
+
+    Ocalaly* o3 = utworz_ocalalego("Minho", ZWIADOWCA, 6, 100, 5, AKTYWNY);
+    lista = dodaj_na_poczatek(lista, o3);
+
+    Ocalaly* o4 = utworz_ocalalego("Gally", INZYNIER, 5, 95, 9, AKTYWNY);
+    lista = dodaj_na_poczatek(lista, o4);
+
+    Ocalaly* o5 = utworz_ocalalego("Teresa Agnes", MEDYK, 3, 90, 6, AKTYWNY);
+    lista = dodaj_na_poczatek(lista, o5);
 
     int wybor = -1;
 
@@ -192,9 +201,17 @@ int main() {
                 break;
             }
 
-            case 7:
-                printf("\nZapis do pliku\n");
+            case 7: {
+                char nazwa_pliku[50];
+                printf("\n--- ZAPIS DO PLIKU ---\n");
+                printf("Podaj nazwe pliku: ");
+                
+                while(getchar() != '\n'); 
+                scanf("%s", nazwa_pliku);
+
+                zapisz_do_pliku(lista, nazwa_pliku);
                 break;
+            }
 
             case 8:
                 printf("Odczyt z pliku\n");
