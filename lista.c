@@ -64,3 +64,14 @@ void wypisz_liste(Ocalaly* head) {
     }
     printf("-----------------------\n");
 }
+
+void zwolnij_pamiec(Ocalaly* head) {
+    Ocalaly* obecny = head;
+    Ocalaly* nastepny;
+
+    while (obecny != NULL) {
+        nastepny = obecny->next; 
+        free(obecny);            
+        obecny = nastepny;      
+    }
+}

@@ -246,6 +246,7 @@ int main(int argc, char *argv[]) {
 
             case 0:
                 printf("\nZamykanie systemu Schron 17...\n");
+                zwolnij_pamiec(lista);
                 exit(0);
                 break;
 
