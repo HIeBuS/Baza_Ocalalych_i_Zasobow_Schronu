@@ -199,11 +199,22 @@ int main(int argc, char *argv[]) {
                 printf("1. Alfabetycznie (A-Z)\n");
                 printf("2. Wedlug zdrowia (od najslabszych)\n");
                 printf("Twoj wybor: ");
-                scanf("%d", &wybor);
+                
+                if (scanf("%d", &wybor) != 1) {
+                     printf("To nie liczba!\n");
+                     while(getchar() != '\n');
+                     break;
+                }
 
-                if (wybor == 1 || wybor == 2) {
-                     printf("Wybrano sortowanie nr %d\n", wybor);
-                } else {
+                if (wybor == 1) {
+                     sortuj_alfabetycznie(lista);
+                     wypisz_liste(lista); 
+                } 
+                else if (wybor == 2) {
+                     sortuj_po_zdrowiu(lista);
+                     wypisz_liste(lista);
+                } 
+                else {
                      printf("Niepoprawny wybor!\n");
                 }
                 break;

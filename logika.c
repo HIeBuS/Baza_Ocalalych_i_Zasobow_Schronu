@@ -98,3 +98,79 @@ Ocalaly* usun_ocalalego(Ocalaly* head, char* imie, int* kod_wyniku) {
     *kod_wyniku = 1;
     return head;
 }
+
+void zamien_dane(Ocalaly* a, Ocalaly* b) {
+    char temp_imie[100];
+    Specjalizacja temp_rola;
+    int temp_racje, temp_zdrowie, temp_zagrozenie;
+    Status temp_stan;
+
+    strcpy(temp_imie, a->imie);
+    temp_rola = a->rola;
+    temp_racje = a->ilosc_racji;
+    temp_zdrowie = a->stan_zdrowia;
+    temp_zagrozenie = a->poziom_zagrozenia;
+    temp_stan = a->stan;
+
+    strcpy(a->imie, b->imie);
+    a->rola = b->rola;
+    a->ilosc_racji = b->ilosc_racji;
+    a->stan_zdrowia = b->stan_zdrowia;
+    a->poziom_zagrozenia = b->poziom_zagrozenia;
+    a->stan = b->stan;
+
+    strcpy(b->imie, temp_imie);
+    b->rola = temp_rola;
+    b->ilosc_racji = temp_racje;
+    b->stan_zdrowia = temp_zdrowie;
+    b->poziom_zagrozenia = temp_zagrozenie;
+    b->stan = temp_stan;
+}
+
+void sortuj_alfabetycznie(Ocalaly* head) {
+    if (head == NULL) return;
+
+    int zamiana;
+    Ocalaly* obecny;
+    Ocalaly* ostatni = NULL;
+
+    do {
+        zamiana = 0;
+        obecny = head;
+
+        while (obecny->next != ostatni) {
+            if (strcmp(obecny->imie, obecny->next->imie) > 0) {
+                zamien_dane(obecny, obecny->next);
+                zamiana = 1;
+            }
+            obecny = obecny->next;
+        }
+        ostatni = obecny;
+    } while (zamiana);
+    
+    printf("\nLista zostala posortowana alfabetycznie!\n");
+}
+
+void sortuj_po_zdrowiu(Ocalaly* head) {
+    if (head == NULL) return;
+
+    int zamiana;
+    Ocalaly* obecny;
+    Ocalaly* ostatni = NULL;
+
+    do {
+        zamiana = 0;
+        obecny = head;
+
+        while (obecny->next != ostatni) {
+            if (obecny->stan_zdrowia > obecny->next->stan_zdrowia) {
+                zamien_dane(obecny, obecny->next);
+                zamiana = 1;
+            }
+            obecny = obecny->next;
+        }
+        ostatni = obecny;
+    } while (zamiana);
+
+    printf("\nLista zostala posortowana wedlug zdrowia!\n");
+}

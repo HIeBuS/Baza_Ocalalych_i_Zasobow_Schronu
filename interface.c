@@ -13,7 +13,7 @@ void wyswietl_menu() {
     printf("1. Dodaj nowego ocalalego\n");
     printf("2. Edytuj dane ocalalego\n");
     printf("3. Usun ocalalego\n");
-    printf("--- WYSZUKIWANIE I FILTROWANIE ---\n");
+    printf("--- WYSZUKIWANIE I SORTOWANIE ---\n");
     printf("4. Wyswietl wszystkich ocalalych\n");
     printf("5. Wyszukaj ocalalego\n");
     printf("6. Sortuj liste\n");
